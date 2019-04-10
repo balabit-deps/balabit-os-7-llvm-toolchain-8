@@ -1,0 +1,24 @@
+Index: llvm-toolchain-8_8~svn353935/libcxx/test/std/thread/thread.condition/thread.condition.condvar/wait_for.pass.cpp
+===================================================================
+--- llvm-toolchain-8_8~svn353935.orig/libcxx/test/std/thread/thread.condition/thread.condition.condvar/wait_for.pass.cpp
++++ llvm-toolchain-8_8~svn353935/libcxx/test/std/thread/thread.condition/thread.condition.condvar/wait_for.pass.cpp
+@@ -8,6 +8,7 @@
+ //===----------------------------------------------------------------------===//
+ //
+ // UNSUPPORTED: libcpp-has-no-threads
++// XFAIL: *
+ 
+ // FLAKY_TEST
+ 
+Index: llvm-toolchain-8_8~svn353935/libcxx/test/std/thread/thread.mutex/thread.lock/thread.lock.shared/thread.lock.shared.locking/lock.pass.cpp
+===================================================================
+--- llvm-toolchain-8_8~svn353935.orig/libcxx/test/std/thread/thread.mutex/thread.lock/thread.lock.shared/thread.lock.shared.locking/lock.pass.cpp
++++ llvm-toolchain-8_8~svn353935/libcxx/test/std/thread/thread.mutex/thread.lock/thread.lock.shared/thread.lock.shared.locking/lock.pass.cpp
+@@ -9,6 +9,7 @@
+ //
+ // UNSUPPORTED: libcpp-has-no-threads
+ // UNSUPPORTED: c++98, c++03, c++11
++// XFAIL: *
+ 
+ // <shared_mutex>
+ 

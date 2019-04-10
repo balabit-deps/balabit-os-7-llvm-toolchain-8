@@ -1,0 +1,12 @@
+Index: llvm-toolchain-8-8~+rc1/tools/llvm-shlib/CMakeLists.txt
+===================================================================
+--- llvm-toolchain-8-8~+rc1.orig/tools/llvm-shlib/CMakeLists.txt
++++ llvm-toolchain-8-8~+rc1/tools/llvm-shlib/CMakeLists.txt
+@@ -46,6 +46,7 @@ if(LLVM_BUILD_LLVM_DYLIB)
+   list(REMOVE_DUPLICATES LIB_NAMES)
+   if(("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux") OR (MINGW) OR (HAIKU)
+      OR ("${CMAKE_SYSTEM_NAME}" STREQUAL "FreeBSD")
++     OR ("${CMAKE_SYSTEM_NAME}" STREQUAL "kFreeBSD")
+      OR ("${CMAKE_SYSTEM_NAME}" STREQUAL "GNU")
+      OR ("${CMAKE_SYSTEM_NAME}" STREQUAL "OpenBSD")
+      OR ("${CMAKE_SYSTEM_NAME}" STREQUAL "Fuchsia")

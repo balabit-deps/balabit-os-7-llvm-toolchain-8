@@ -1,0 +1,35 @@
+Index: llvm-toolchain-8-8~+rc1/lib/Support/Triple.cpp
+===================================================================
+--- llvm-toolchain-8-8~+rc1.orig/lib/Support/Triple.cpp
++++ llvm-toolchain-8-8~+rc1/lib/Support/Triple.cpp
+@@ -182,7 +182,7 @@ StringRef Triple::getOSTypeName(OSType K
+   case FreeBSD: return "freebsd";
+   case Fuchsia: return "fuchsia";
+   case IOS: return "ios";
+-  case KFreeBSD: return "kfreebsd";
++  case kFreeBSD: return "kfreebsd";
+   case Linux: return "linux";
+   case Lv2: return "lv2";
+   case MacOSX: return "macosx";
+@@ -479,7 +479,7 @@ static Triple::OSType parseOS(StringRef
+     .StartsWith("freebsd", Triple::FreeBSD)
+     .StartsWith("fuchsia", Triple::Fuchsia)
+     .StartsWith("ios", Triple::IOS)
+-    .StartsWith("kfreebsd", Triple::KFreeBSD)
++    .StartsWith("kfreebsd", Triple::kFreeBSD)
+     .StartsWith("linux", Triple::Linux)
+     .StartsWith("lv2", Triple::Lv2)
+     .StartsWith("macos", Triple::MacOSX)
+Index: llvm-toolchain-8-8~+rc1/lib/Support/Unix/Path.inc
+===================================================================
+--- llvm-toolchain-8-8~+rc1.orig/lib/Support/Unix/Path.inc
++++ llvm-toolchain-8-8~+rc1/lib/Support/Unix/Path.inc
+@@ -62,7 +62,7 @@
+ #define FSTATVFS fstatvfs
+ #define STATVFS_F_FRSIZE(vfs) vfs.f_frsize
+ #else
+-#if defined(__OpenBSD__) || defined(__FreeBSD__)
++#if defined(__OpenBSD__) || defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
+ #include <sys/mount.h>
+ #include <sys/param.h>
+ #elif defined(__linux__)

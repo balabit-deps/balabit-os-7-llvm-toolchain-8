@@ -1,0 +1,26 @@
+Index: llvm-toolchain-8-8~+rc1/lib/Target/X86/X86Subtarget.cpp
+===================================================================
+--- llvm-toolchain-8-8~+rc1.orig/lib/Target/X86/X86Subtarget.cpp
++++ llvm-toolchain-8-8~+rc1/lib/Target/X86/X86Subtarget.cpp
+@@ -284,7 +284,7 @@ void X86Subtarget::initSubtargetFeatures
+   if (StackAlignOverride)
+     stackAlignment = StackAlignOverride;
+   else if (isTargetDarwin() || isTargetLinux() || isTargetSolaris() ||
+-           isTargetKFreeBSD() || In64BitMode)
++           isTargetkFreeBSD() || In64BitMode)
+     stackAlignment = 16;
+ 
+   // Some CPUs have more overhead for gather. The specified overhead is relative
+Index: llvm-toolchain-8-8~+rc1/lib/Target/X86/X86Subtarget.h
+===================================================================
+--- llvm-toolchain-8-8~+rc1.orig/lib/Target/X86/X86Subtarget.h
++++ llvm-toolchain-8-8~+rc1/lib/Target/X86/X86Subtarget.h
+@@ -731,7 +731,7 @@ public:
+   bool isTargetMachO() const { return TargetTriple.isOSBinFormatMachO(); }
+ 
+   bool isTargetLinux() const { return TargetTriple.isOSLinux(); }
+-  bool isTargetKFreeBSD() const { return TargetTriple.isOSKFreeBSD(); }
++  bool isTargetkFreeBSD() const { return TargetTriple.isOSkFreeBSD(); }
+   bool isTargetGlibc() const { return TargetTriple.isOSGlibc(); }
+   bool isTargetAndroid() const { return TargetTriple.isAndroid(); }
+   bool isTargetNaCl() const { return TargetTriple.isOSNaCl(); }

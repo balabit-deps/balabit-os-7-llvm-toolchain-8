@@ -1,0 +1,81 @@
+Index: llvm-toolchain-8_8~svn353935/clang/lib/Basic/FileManager.cpp
+===================================================================
+--- llvm-toolchain-8_8~svn353935.orig/clang/lib/Basic/FileManager.cpp
++++ llvm-toolchain-8_8~svn353935/clang/lib/Basic/FileManager.cpp
+@@ -483,6 +483,12 @@ void FileManager::invalidateCache(const
+   UniqueRealFiles.erase(Entry->getUniqueID());
+ }
+ 
++// For GNU Hurd
++#if defined(__GNU__) && !defined(PATH_MAX)
++# define PATH_MAX 4096
++#endif
++
++
+ void FileManager::GetUniqueIDMapping(
+                    SmallVectorImpl<const FileEntry *> &UIDToFiles) const {
+   UIDToFiles.clear();
+Index: llvm-toolchain-8_8~svn353935/lldb/include/lldb/lldb-defines.h
+===================================================================
+--- llvm-toolchain-8_8~svn353935.orig/lldb/include/lldb/lldb-defines.h
++++ llvm-toolchain-8_8~svn353935/lldb/include/lldb/lldb-defines.h
+@@ -28,6 +28,11 @@
+ #define INT32_MAX 2147483647
+ #endif
+ 
++// For GNU Hurd
++#if defined(__GNU__) && !defined(PATH_MAX)
++# define PATH_MAX 4096
++#endif
++
+ #if !defined(UINT32_MAX)
+ #define UINT32_MAX 4294967295U
+ #endif
+Index: llvm-toolchain-8_8~svn353935/tools/dsymutil/DwarfLinker.cpp
+===================================================================
+--- llvm-toolchain-8_8~svn353935.orig/tools/dsymutil/DwarfLinker.cpp
++++ llvm-toolchain-8_8~svn353935/tools/dsymutil/DwarfLinker.cpp
+@@ -101,6 +101,11 @@
+ #include <utility>
+ #include <vector>
+ 
++// For GNU Hurd
++#if defined(__GNU__) && !defined(PATH_MAX)
++# define PATH_MAX 4096
++#endif
++
+ namespace llvm {
+ namespace dsymutil {
+ 
+Index: llvm-toolchain-8_8~svn353935/polly/lib/External/ppcg/cuda_common.c
+===================================================================
+--- llvm-toolchain-8_8~svn353935.orig/polly/lib/External/ppcg/cuda_common.c
++++ llvm-toolchain-8_8~svn353935/polly/lib/External/ppcg/cuda_common.c
+@@ -15,6 +15,11 @@
+ #include "cuda_common.h"
+ #include "ppcg.h"
+ 
++// For GNU Hurd
++#if defined(__GNU__) && !defined(PATH_MAX)
++# define PATH_MAX 4096
++#endif
++
+ /* Open the host .cu file and the kernel .hu and .cu files for writing.
+  * Add the necessary includes.
+  */
+Index: llvm-toolchain-8_8~svn353935/clang/lib/Frontend/ModuleDependencyCollector.cpp
+===================================================================
+--- llvm-toolchain-8_8~svn353935.orig/clang/lib/Frontend/ModuleDependencyCollector.cpp
++++ llvm-toolchain-8_8~svn353935/clang/lib/Frontend/ModuleDependencyCollector.cpp
+@@ -99,6 +99,11 @@ struct ModuleDependencyMMCallbacks : pub
+ 
+ }
+ 
++// For GNU Hurd
++#if defined(__GNU__) && !defined(PATH_MAX)
++# define PATH_MAX 4096
++#endif
++
+ // TODO: move this to Support/Path.h and check for HAVE_REALPATH?
+ static bool real_path(StringRef SrcPath, SmallVectorImpl<char> &RealPath) {
+ #ifdef LLVM_ON_UNIX

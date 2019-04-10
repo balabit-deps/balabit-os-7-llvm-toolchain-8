@@ -1,0 +1,26 @@
+Index: llvm-toolchain-8-8~+rc5/compiler-rt/lib/sanitizer_common/sanitizer_platform_limits_linux.cc
+===================================================================
+--- llvm-toolchain-8-8~+rc5.orig/compiler-rt/lib/sanitizer_common/sanitizer_platform_limits_linux.cc
++++ llvm-toolchain-8-8~+rc5/compiler-rt/lib/sanitizer_common/sanitizer_platform_limits_linux.cc
+@@ -29,7 +29,7 @@
+ // are not defined anywhere in userspace headers. Fake them. This seems to work
+ // fine with newer headers, too.
+ #include <linux/posix_types.h>
+-#if defined(__x86_64__) ||  defined(__mips__)
++#if defined(__x86_64__)
+ #include <sys/stat.h>
+ #else
+ #define ino_t __kernel_ino_t
+Index: llvm-toolchain-8-8~+rc5/compiler-rt/lib/sanitizer_common/sanitizer_platform_limits_posix.h
+===================================================================
+--- llvm-toolchain-8-8~+rc5.orig/compiler-rt/lib/sanitizer_common/sanitizer_platform_limits_posix.h
++++ llvm-toolchain-8-8~+rc5/compiler-rt/lib/sanitizer_common/sanitizer_platform_limits_posix.h
+@@ -84,7 +84,7 @@ namespace __sanitizer {
+ #elif defined(__mips__)
+   const unsigned struct_kernel_stat_sz =
+                  SANITIZER_ANDROID ? FIRST_32_SECOND_64(104, 128) :
+-                                     FIRST_32_SECOND_64(160, 216);
++                                     FIRST_32_SECOND_64(144, 104);
+   const unsigned struct_kernel_stat64_sz = 104;
+ #elif defined(__s390__) && !defined(__s390x__)
+   const unsigned struct_kernel_stat_sz = 64;

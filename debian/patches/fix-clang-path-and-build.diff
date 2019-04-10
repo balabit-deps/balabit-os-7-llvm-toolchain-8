@@ -1,0 +1,31 @@
+---
+ clang/lib/Driver/ToolChains.cpp |    2 ++
+ 1 file changed, 2 insertions(+)
+
+Index: llvm-toolchain-snapshot_8~svn344157/clang/lib/Driver/ToolChains/Gnu.cpp
+===================================================================
+--- llvm-toolchain-snapshot_8~svn344157.orig/clang/lib/Driver/ToolChains/Gnu.cpp
++++ llvm-toolchain-snapshot_8~svn344157/clang/lib/Driver/ToolChains/Gnu.cpp
+@@ -1,4 +1,5 @@
+-//===--- Gnu.cpp - Gnu Tool and ToolChain Implementations -------*- C++ -*-===//
++//===--- Gnu.cpp - Gnu Tool and ToolChain Implementations -------*- C++ 
++//-*-===//
+ //
+ //                     The LLVM Compiler Infrastructure
+ //
+@@ -16,6 +17,7 @@
+ #include "Arch/SystemZ.h"
+ #include "CommonArgs.h"
+ #include "Linux.h"
++#include "clang/Basic/Version.h"
+ #include "clang/Config/config.h" // for GCC_INSTALL_PREFIX
+ #include "clang/Driver/Compilation.h"
+ #include "clang/Driver/Driver.h"
+@@ -2438,6 +2440,7 @@ void Generic_GCC::AddClangCXXStdlibInclu
+     addLibStdCxxIncludePaths(DriverArgs, CC1Args);
+     break;
+   }
++  addSystemInclude(DriverArgs, CC1Args, "/usr/include/clang/" + std::string(CLANG_VERSION_STRING) + "/include/");
+ }
+ 
+ void
