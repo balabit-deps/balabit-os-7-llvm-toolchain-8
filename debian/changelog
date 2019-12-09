@@ -1,3 +1,9 @@
+llvm-toolchain-8 (1:8-3~ubuntu18.04.2) bionic-security; urgency=medium
+
+  * No change rebuild for the security pocket
+
+ -- Chris Coulson <chris.coulson@canonical.com>  Mon, 09 Dec 2019 21:31:39 +0000
+
 llvm-toolchain-8 (1:8-3~ubuntu18.04.1) bionic; urgency=medium
 
   * Backport to bionic for 18.04.3 HWE stack update. (LP: #1824111)
